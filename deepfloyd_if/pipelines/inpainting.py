@@ -58,7 +58,8 @@ def inpainting(
 
     if_I_kwargs['support_noise'] = low_res
 
-    inpainting_mask_I = img_as_bool(resize(inpainting_mask[0].cpu(), (3, image_h, image_w)))
+    # 20241707 fixed the error:TypeError: Cannot interpret 'torch.uint8' as a data type
+    inpainting_mask_I = img_as_bool(resize(inpainting_mask[0].cpu().numpy(), (3, image_h, image_w)))
     inpainting_mask_I = torch.from_numpy(inpainting_mask_I).unsqueeze(0).to(if_I.device)
 
     if_I_kwargs['inpainting_mask'] = inpainting_mask_I
