@@ -251,6 +251,7 @@ class IFBaseModule:
             hf_download_path = hf_hub_download(repo_id=f'DeepFloyd/{dir_or_name}', filename=filename, cache_dir=cache_dir,
                             force_filename=filename, token=self.hf_token)
             #return os.path.join(cache_dir, filename)
+            
             return hf_download_path
         else:
             return os.path.join(dir_or_name, filename)
