@@ -76,6 +76,7 @@ class T5Embedder:
 
             hf_download_path = os.path.dirname(hf_download_path)
             #tokenizer_path, path = cache_dir, cache_dir
+            
             tokenizer_path, path = hf_download_path, hf_download_path
         else:
             cache_dir = os.path.join(self.cache_dir, 't5-v1_1-xxl')
