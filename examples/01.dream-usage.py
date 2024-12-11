@@ -1,14 +1,15 @@
 import sys
-sys.path.append('/root/autodl-tmp/IF-easy-webui')
 import os
-os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:128'
+sys.path.append(os.getcwd())
 from deepfloyd_if.modules import IFStageI, IFStageII, StableStageIII
 from deepfloyd_if.modules.t5 import T5Embedder
 
 device = 'cuda:0'
-# setting model cache lcation
-config_path = '/root/autodl-tmp/transformers-cache/'
+# If the default space is insufficient, set a custom cache location for the model
+#config_path = '/root/autodl-tmp/transformers-cache/'
+config_path = None
 
+# Initialize the model
 if_I = IFStageI('IF-I-XL-v1.0', device=device, cache_dir=config_path)
 if_II = IFStageII('IF-II-L-v1.0', device=device, cache_dir=config_path)
 if_III = StableStageIII('stable-diffusion-x4-upscaler', device=device, cache_dir=config_path)
@@ -42,5 +43,4 @@ result = dream(
 # save the generated images as png files
 for stage, images in result.items():
     for i, image in enumerate(images):
-        # 保存到generate_imgs文件夹中
-        image.save(f'/root/autodl-tmp/IF-easy-webui/generate-imgs/01.dream-usage_{stage}_{i}.png')
+        image.save(f'generate-imgs/01.dream-usage_{stage}_{i}.png')

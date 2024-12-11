@@ -1,18 +1,17 @@
 import sys
-sys.path.append('/root/autodl-tmp/IF-easy-webui')
+import os
+sys.path.append(os.getcwd())
 from deepfloyd_if.modules import IFStageI, IFStageII, StableStageIII
 from deepfloyd_if.modules.t5 import T5Embedder
 from PIL import Image
 
-# 手动设置 config.yml 路径
-config_path = '/root/autodl-tmp/transformers-cache/'
+# If the default space is insufficient, set a custom cache location for the model
+#config_path = '/root/autodl-tmp/transformers-cache/'
+config_path = None
 
 device = 'cuda:0'
 
-# 加载配置文件
-#config = OmegaConf.load(config_path)
-
-# 初始化模型
+# Initialize the model
 device = 'cuda:0'
 if_I = IFStageI('IF-I-XL-v1.0', device=device, cache_dir=config_path)
 if_II = IFStageII('IF-II-L-v1.0', device=device, cache_dir=config_path)
@@ -21,8 +20,8 @@ t5 = T5Embedder(device="cpu", cache_dir=config_path)
 
 from deepfloyd_if.pipelines import style_transfer
 
-# 加载原始图像
-raw_pil_image = Image.open('/root/autodl-tmp/IF-easy-webui/raw-image/raw-image-01.png') 
+# Load the original image
+raw_pil_image = Image.open('raw-image/raw-image-01.png') 
 result = style_transfer(
     t5=t5, if_I=if_I, if_II=if_II,
     support_pil_img=raw_pil_image,
@@ -45,12 +44,12 @@ result = style_transfer(
     },
 )
 
-print(result)
-# 保存生成的图片
+#print(result)
 
+# save the generated images as png files
 for stage, images in result.items():
     for i, img in enumerate(images):
-        img.save(f'/root/autodl-tmp/IF-easy-webui/generate-imgs/02.zero-short-image2image_tran_{stage}_{i}_2.png')
+        img.save(f'generate-imgs/02.zero-short-image2image_tran_{stage}_{i}_2.png')
 
 
     

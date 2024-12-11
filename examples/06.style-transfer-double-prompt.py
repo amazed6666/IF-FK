@@ -1,24 +1,26 @@
 import sys
-sys.path.append('/root/autodl-tmp/IF-easy-webui')
+import os
+sys.path.append(os.getcwd())
 from deepfloyd_if.modules import IFStageI, IFStageII, StableStageIII
 from deepfloyd_if.modules.t5 import T5Embedder
 from PIL import Image
 from deepfloyd_if.pipelines import style_transfer
 
-# 手动设置 config.yml 路径
-config_path = '/root/autodl-tmp/transformers-cache/'
+# If the default space is insufficient, set a custom cache location for the model
+#config_path = '/root/autodl-tmp/transformers-cache/'
+config_path = None
 
 device = 'cuda:0'
 
-# 初始化模型
+# Initialize the model
 device = 'cuda:0'
 if_I = IFStageI('IF-I-XL-v1.0', device=device, cache_dir=config_path)
 if_II = IFStageII('IF-II-L-v1.0', device=device, cache_dir=config_path)
 if_III = StableStageIII('stable-diffusion-x4-upscaler', device=device, cache_dir=config_path)
 t5 = T5Embedder(device="cpu", cache_dir=config_path)
 
-# 加载原始图像
-raw_pil_image = Image.open('/root/autodl-tmp/IF-easy-webui/raw-image/raw-image-05.png').convert('RGB')
+# Load the original image
+raw_pil_image = Image.open('raw-image/raw-image-05.png').convert('RGB')
 
 
 count = 4
@@ -52,10 +54,10 @@ result = style_transfer(
 
 #print(result)
 
-# 保存生成的图片
+# save the generated images as png files
 for stage, images in result.items():
     for i, img in enumerate(images):
-        img.save(f'/root/autodl-tmp/IF-easy-webui/generate-imgs/06.style-transfer-double-prompt_{stage}_{i}.png')
+        img.save(f'generate-imgs/06.style-transfer-double-prompt_{stage}_{i}.png')
 
 
 

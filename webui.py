@@ -1,25 +1,21 @@
-import sys
-sys.path.append('/root/autodl-tmp/IF-easy-webui')
-import os
 import gradio as gr
 from deepfloyd_if.modules import IFStageI, IFStageII, StableStageIII
 from deepfloyd_if.modules.t5 import T5Embedder
 from deepfloyd_if.pipelines import dream
-from PIL import Image
 
-# 设置环境变量和模型路径
 
-os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:128'
-config_path = '/root/autodl-tmp/transformers-cache/'
+# If the default space is insufficient, set a custom cache location for the model
+#config_path = '/root/autodl-tmp/transformers-cache/'
+config_path = None
 device = 'cuda:0'
 
-# 初始化模型
+# Initialize the model
 if_I = IFStageI('IF-I-XL-v1.0', device=device, cache_dir=config_path)
 if_II = IFStageII('IF-II-L-v1.0', device=device, cache_dir=config_path)
 if_III = StableStageIII('stable-diffusion-x4-upscaler', device=device, cache_dir=config_path)
 t5 = T5Embedder(device="cpu", cache_dir=config_path)
 
-# 定义生成图像的函数
+# Define a function to generate images
 def generate_images(prompt, count, seed):
     result = dream(
         t5=t5, if_I=if_I, if_II=if_II, #if_III=if_III,
@@ -40,7 +36,7 @@ def generate_images(prompt, count, seed):
         #},
     )
 
-    # 直接返回生成的图像对象
+    # Return the generated image object directly
     images = []
     for stage, stage_images in result.items():
         if stage != 'II':
@@ -50,7 +46,7 @@ def generate_images(prompt, count, seed):
 
     return images
 
-# 创建 Gradio 界面
+# Create a Gradio interface
 iface = gr.Interface(
     fn=generate_images,
     inputs=[
@@ -63,5 +59,5 @@ iface = gr.Interface(
     description="Generate images based on your prompt using DeepFloyd IF model.",
 )
 
-# 指定启动的 IP 和端口
+# Specify the IP and port for startup
 iface.launch(server_name="127.0.0.1", server_port=6006)
