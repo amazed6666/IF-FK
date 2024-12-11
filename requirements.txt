@@ -13,5 +13,5 @@ tokenizers==0.20.3
 sentencepiece==0.1.99
 ftfy==6.1.3
 beautifulsoup4==4.11.2
-git+https://github.com/openai/CLIP.git --no-deps
 protobuf==3.19.6
+gradio==4.44.1
