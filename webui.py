@@ -18,7 +18,7 @@ t5 = T5Embedder(device="cpu", cache_dir=config_path)
 # Define a function to generate images
 def generate_images(prompt, count, seed):
     result = dream(
-        t5=t5, if_I=if_I, if_II=if_II, #if_III=if_III,
+        t5=t5, if_I=if_I, if_II=if_II, if_III=if_III,
         prompt=[prompt] * count,
         seed=seed,
         if_I_kwargs={
@@ -29,18 +29,18 @@ def generate_images(prompt, count, seed):
             "guidance_scale": 4.0,
             "sample_timestep_respacing": "smart50",
         },
-        #if_III_kwargs={
-        #    "guidance_scale": 9.0,
-        #    "noise_level": 20,
-        #    "sample_timestep_respacing": "75",
-        #},
+        if_III_kwargs={
+            "guidance_scale": 9.0,
+            "noise_level": 20,
+            "sample_timestep_respacing": "75",
+        },
     )
 
     # Return the generated image object directly
     images = []
     for stage, stage_images in result.items():
-        if stage != 'II':
-            continue
+        #if stage != 'II':
+        #    continue
         for image in stage_images:
             images.append(image)
 
