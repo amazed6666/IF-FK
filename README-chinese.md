@@ -1,25 +1,23 @@
-# Thanks to the Deepfloyd team for open-sourcing the IF model. IF-easy-webui is a simple and user-friendly web interface based on the IF model, which primarily addresses issues such as dependency package installation error, missing model files after download, and errors in converting inpainting types. This makes it easier for everyone to quickly experience the IF model
+# 非常感谢Deepfloyd的团队开源了IF模型，IF-easy-webui是基于IF模型的一个简单易用的webui，主要解决了IF在依赖包安装、模型下载后找不到文件加载、inpainting类型转换错误等问题，方便大家快速体验IF模型
 
-# click here to view chinese readme[README-chinese.md](README-chinese.md)
-
-# User Guide
-## 1.Download the Source Code
+# 使用指引
+## 1.下载源代码
 ```bash 
 root@xxxx:~# git clone https://github.com/amazed6666/IF-easy-webui.git
 ```
 
-## 2.Navigate to the IF-easy-webui directory and install the required dependencies
+## 2.进入到IF-easy-webui目录下，执行依赖包安装：pip install -r requirements.txt
 ```bash 
 root@xxxx:~# cd IF-easy-webui
 root@xxxx:~/IF-easy-webui# pip install -r requirements.txt
 ```
 
-## 3.Install clip：
+## 3.安装clip
 ```bash 
 root@xxxx:~/IF-easy-webui# pip install git+https://github.com/openai/CLIP.git --no-deps
 ```
 
-## 4.Log in to huggingface_hub Using an Access Token,Configure Git to store credentials and log in using Python:
+## 4.使用huggingface的Access Token登录huggingface_hub
 ```bash 
 root@xxxx:~/IF-easy-webui# git config --global credential.helper store
 root@xxxx:~/IF-easy-webui# python
@@ -41,7 +39,7 @@ Add token as git credential? (Y/n) Y
 >>> exit()
 ```
 
-## 5.After running webui.py, you will need to wait for some time while the model files are being loaded. Once the loading is complete, the following message will be displayed. Then, you can open your browser and enter http://127.0.0.1:6006 to access the IF-easy-webui interface and start experiencing the IF model
+## 5.运行webui.py后，需要等待一段时间，加载模型文件完成后，会显示如下信息；然后可以打开浏览器，输入http://127.0.0.1:6006，即可看到IF-easy-webui的界面，可以开始体验IF模型了
 ```bash 
 root@xxxx:~/IF-easy-webui# python webui.py
 FORCE_MEM_EFFICIENT_ATTN= 0 @UNET:QKVATTENTION
@@ -55,17 +53,6 @@ To create a public link, set `share=True` in `launch()`.
 ``` 
 ![webui](pics/webui.png)
 
-## 6.Friendly Reminder: How to Obtain a Hugging Face Access Token
-To get a Hugging Face Access Token, follow these steps:
-
-Log in to Hugging Face at https://huggingface.co/
-
-Click on your profile picture in the top-right corner.
-
-From the dropdown menu, select Access Tokens.
-
-On the Access Tokens page, you can generate the token required for logging into huggingface_hub (refer to the screenshot).
+## 6.温馨提示：怎么获取huggingface的Access Token，首先登录https://huggingface.co，然后再点击右上角我的头像，在显示的拉下菜单中找到Access Token，点击进入该页面可以生成huggingface_hub登录所需要的Access Token（参照截图）
 ![huggingface-accesstokens](pics/huggingface-accesstokens.png)
-
-# click here to view Deepfloyd's README [README-deepfloyd.md](README-deepfloyd.md)
 
