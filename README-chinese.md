@@ -1,4 +1,6 @@
-# 非常感谢Deepfloyd的团队开源了IF模型，IF-easy-webui是基于IF模型的一个简单易用的webui，主要解决了IF在依赖包安装、模型下载后找不到文件加载、inpainting类型转换错误等问题，方便大家快速体验IF模型
+## 非常感谢Deepfloyd的团队开源了IF模型，IF-easy-webui是基于IF模型的一个简单易用的webui
+## 主要解决了IF在依赖包安装、模型下载后找不到文件加载、inpainting类型转换错误等问题
+## 方便大家快速体验IF模型
 
 # 使用指引
 ## 1.下载源代码
