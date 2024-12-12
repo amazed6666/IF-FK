@@ -2,7 +2,7 @@
 ## which primarily addresses issues such as dependency package installation error, missing model files after download, and errors in converting inpainting types. 
 ## This makes it easier for everyone to quickly experience the IF model.
 
-# click here to view chinese readme[README-chinese.md](README-chinese.md)
+## click here to view chinese readme[README-chinese.md](README-chinese.md)
 
 # User Guide
 ## 1.Download the Source Code
@@ -69,5 +69,5 @@ From the dropdown menu, select Access Tokens.
 On the Access Tokens page, you can generate the token required for logging into huggingface_hub (refer to the screenshot).
 ![huggingface-accesstokens](pics/huggingface-accesstokens.png)
 
-# click here to view Deepfloyd's README [README-deepfloyd.md](README-deepfloyd.md)
+## click here to view Deepfloyd's README [README-deepfloyd.md](README-deepfloyd.md)
 
