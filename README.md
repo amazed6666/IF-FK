@@ -1,4 +1,6 @@
-# Thanks to the Deepfloyd team for open-sourcing the IF model. IF-easy-webui is a simple and user-friendly web interface based on the IF model, which primarily addresses issues such as dependency package installation error, missing model files after download, and errors in converting inpainting types. This makes it easier for everyone to quickly experience the IF model
+## Thanks to the Deepfloyd team for open-sourcing the IF model. IF-easy-webui is a simple and user-friendly web interface based on the IF model.
+## which primarily addresses issues such as dependency package installation error, missing model files after download, and errors in converting inpainting types. 
+## This makes it easier for everyone to quickly experience the IF model.
 
 # click here to view chinese readme[README-chinese.md](README-chinese.md)
 
